@@ -3,5 +3,5 @@ include "root" {
 }
 
 terraform {
-  source = "git::git@github.com:foo/modules.git//cache?ref=v0.0.1"
+  source = "git::git@github.com:foo/modules.git//alb?ref=v0.0.1"
 }
