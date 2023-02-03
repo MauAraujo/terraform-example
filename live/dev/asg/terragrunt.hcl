@@ -13,13 +13,21 @@ dependency "vpc" {
   }
 }
 
+dependency "alb" {
+  config_path = "../alb"
+  mock_outputs = {
+    target_group_arns = ["mock_tg_arn"]
+  }
+}
+
 inputs = {
-  asg_name         = "dev-asg"
-  name_prefix      = "dev-"
-  image_id         = ""
-  instance_type    = "t2.micro"
-  min_size         = 1
-  max_size         = 1
-  desired_capacity = 1
-  subnet_ids       = dependency.vpc.outputs.subnet_ids
+  asg_name          = "dev-asg"
+  name_prefix       = "dev-"
+  image_id          = ""
+  instance_type     = "t2.nano"
+  min_size          = 1
+  max_size          = 1
+  desired_capacity  = 1
+  subnet_ids        = dependency.vpc.outputs.subnet_ids
+  target_group_arns = dependency.alb.outputs.target_group_arns
 }

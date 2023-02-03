@@ -8,7 +8,7 @@ terraform {
 
 inputs = {
   cluster_id           = "dev-cache-cluster"
-  node_type            = "cache.m4.micro"
+  node_type            = "cache.t2.nano"
   nodes                = 1
   engine_version       = "3.2.10"
   parameter_group_name = "default.redis3.2"

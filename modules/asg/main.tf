@@ -21,6 +21,8 @@ resource "aws_autoscaling_group" "api_autoscaling_group" {
   launch_configuration      = aws_launch_configuration.api_launch_config.name
   vpc_zone_identifier       = var.subnet_ids
 
+  target_group_arns = var.target_group_arns
+
   timeouts {
     delete = "15m"
   }

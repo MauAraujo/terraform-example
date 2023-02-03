@@ -8,7 +8,7 @@ terraform {
 
 inputs = {
   db_name              = "dev-db"
-  instance_type        = "db.t2.micro"
+  instance_type        = "db.m4.large"
   engine_version       = "14.6"
   parameter_group_name = "default.postgres14.6"
 }

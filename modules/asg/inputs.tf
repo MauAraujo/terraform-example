@@ -29,3 +29,7 @@ variable "desired_capacity" {
 variable "subnet_ids" {
   type = list(string)
 }
+
+variable "target_group_arns" {
+  type = list(string)
+}

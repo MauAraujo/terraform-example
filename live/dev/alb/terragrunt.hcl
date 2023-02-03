@@ -17,7 +17,8 @@ dependency "vpc" {
 
 inputs = {
   alb_name           = "load-balancer-dev"
-  target_group_name  = "load-balancer-targetg-dev"
+  port               = 3000
+  target_group_name  = "load-balancer-targets-dev"
   vpc_id             = dependency.vpc.outputs.vpc_id
   subnet_ids         = dependency.vpc.outputs.subnet_ids
   security_group_ids = dependency.vpc.outputs.security_group_ids
