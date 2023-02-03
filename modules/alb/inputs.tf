@@ -2,7 +2,7 @@ variable "alb_name" {
   type = string
 }
 
-variable "port" {
+variable "api_port" {
   type = number
 }
 

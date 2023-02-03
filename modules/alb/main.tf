@@ -9,7 +9,7 @@ resource "aws_lb" "api_load_balancer" {
 
 resource "aws_lb_target_group" "api_targets" {
   name     = var.target_group_name
-  port     = var.port
+  port     = var.api_port
   protocol = "HTTP"
   vpc_id   = var.vpc_id
 
@@ -22,7 +22,7 @@ resource "aws_lb_target_group" "api_targets" {
 }
 
 resource "aws_lb_listener" "api_lb_listener" {
-  load_balancer_arn = aws_lb.api_lb.arn
+  load_balancer_arn = aws_lb.api_load_balancer.arn
   port              = "443"
   protocol          = "HTTPS"
   ssl_policy        = "ELBSecurityPolicy-2016-08"

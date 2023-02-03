@@ -7,5 +7,5 @@ output "subnet_ids" {
 }
 
 output "security_group_ids" {
-  value = [aws_security_group.allow_tls.id]
+  value = [aws_security_group.api_security_group.id]
 }

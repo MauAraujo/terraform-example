@@ -1,7 +1,7 @@
 generate "providers" {
-  path = "providers.tf"
+  path      = "providers.tf"
   if_exists = "overwrite_terragrunt"
-  contents =  <<EOF
+  contents  = <<EOF
 terraform {
     required_providers {
         aws = {
