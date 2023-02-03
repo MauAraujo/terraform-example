@@ -6,6 +6,13 @@ terraform {
   source = "git::git@github.com:foo/modules.git//asg?ref=v0.0.1"
 }
 
+dependency "vpc" {
+  config_path = "../vpc"
+  mock_outputs = {
+    subnet_ids = ["mock_subnet_id"]
+  }
+}
+
 inputs = {
   asg_name         = "dev-asg"
   name_prefix      = "dev-"
@@ -14,5 +21,5 @@ inputs = {
   min_size         = 1
   max_size         = 1
   desired_capacity = 1
-  subnets          = []
+  subnet_ids       = dependency.vpc.outputs.subnet_ids
 }

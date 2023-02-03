@@ -1,4 +1,4 @@
-resource "aws_db_instance" "main_database" {
+resource "aws_db_instance" "main_db" {
   allocated_storage    = 10
   db_name              = var.db_name
   engine               = "postgres"

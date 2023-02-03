@@ -1,4 +1,4 @@
-resource "aws_elasticache_cluster" "main_redis" {
+resource "aws_elasticache_cluster" "main_cache" {
   cluster_id           = var.cluster_id
   engine               = "redis"
   node_type            = var.node_type

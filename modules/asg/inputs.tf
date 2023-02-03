@@ -26,6 +26,6 @@ variable "desired_capacity" {
   type = number
 }
 
-variable "subnets" {
+variable "subnet_ids" {
   type = list(string)
 }
