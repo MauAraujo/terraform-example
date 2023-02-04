@@ -21,3 +21,7 @@ variable "parameter_group_name" {
 variable "port" {
   type = number
 }
+
+variable "subnet_ids" {
+  type = list(string)
+}

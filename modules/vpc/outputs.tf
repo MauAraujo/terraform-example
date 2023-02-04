@@ -3,7 +3,7 @@ output "vpc_id" {
 }
 
 output "subnet_ids" {
-  value = [aws_subnet.asg_subnet_1.id]
+  value = [for subnet in aws_subnet.asg_subnets : subnet.id]
 }
 
 output "security_group_ids" {
