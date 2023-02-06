@@ -7,7 +7,7 @@ terraform {
 }
 
 locals {
-  env = "dev"
+  env = "qa"
 }
 
 generate "providers" {
@@ -33,8 +33,8 @@ dependency "vpc" {
 
 inputs = {
   cluster_id           = "${local.env}-cache-cluster"
-  node_type            = "cache.t2.micro"
-  nodes                = 1
+  node_type            = "cache.r5b.xlarge"
+  nodes                = 3
   engine_version       = "7.0"
   parameter_group_name = "default.redis7"
   port                 = 6379

@@ -7,7 +7,7 @@ terraform {
 }
 
 locals {
-  env = "dev"
+  env = "prod"
 }
 
 generate "providers" {
@@ -42,7 +42,7 @@ inputs = {
   asg_name          = "${local.env}-asg"
   name_prefix       = local.env
   image_id          = "ami-00874d747dde814fa"
-  instance_type     = "m4.large"
+  instance_type     = "m4.2xlarge"
   min_size          = 1
   max_size          = 1
   desired_capacity  = 1

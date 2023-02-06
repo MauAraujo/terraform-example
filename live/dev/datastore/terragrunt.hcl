@@ -3,7 +3,7 @@ include "root" {
 }
 
 terraform {
-  source = "git::git@github.com:foo/modules.git//datastore?ref=v0.0.1"
+  source = "git::git@github.com:MauAraujo/terraform-modules.git//datastore?ref=v0.0.1"
 }
 
 locals {

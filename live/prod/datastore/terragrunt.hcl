@@ -3,11 +3,11 @@ include "root" {
 }
 
 terraform {
-  source = "git::git@github.com:MauAraujo/terraform-modules.git//cache?ref=v0.0.1"
+  source = "git::git@github.com:MauAraujo/terraform-modules.git//datastore?ref=v0.0.1"
 }
 
 locals {
-  env = "dev"
+  env = "prod"
 }
 
 generate "providers" {
@@ -32,11 +32,10 @@ dependency "vpc" {
 }
 
 inputs = {
-  cluster_id           = "${local.env}-cache-cluster"
-  node_type            = "cache.t2.micro"
-  nodes                = 1
-  engine_version       = "7.0"
-  parameter_group_name = "default.redis7"
-  port                 = 6379
-  subnet_ids           = dependency.vpc.outputs.subnet_ids
+  identifier_prefix         = local.env
+  db_name                   = "${local.env}db"
+  instance_type             = "db.r5b.xlarge"
+  engine_version            = "14.6"
+  subnet_ids                = dependency.vpc.outputs.subnet_ids
+  blue_green_update_enabled = false
 }

@@ -7,7 +7,7 @@ terraform {
 }
 
 locals {
-  env = "dev"
+  env = "qa"
 }
 
 generate "providers" {
