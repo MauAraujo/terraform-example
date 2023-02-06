@@ -1,10 +1,9 @@
 resource "aws_lb" "api_load_balancer" {
-  name                       = var.alb_name
-  internal                   = false
-  load_balancer_type         = "application"
-  security_groups            = var.security_group_ids
-  subnets                    = var.subnet_ids
-  enable_deletion_protection = true
+  name               = var.alb_name
+  internal           = false
+  load_balancer_type = "application"
+  security_groups    = var.security_group_ids
+  subnets            = var.subnet_ids
 }
 
 resource "aws_lb_target_group" "api_targets" {
@@ -23,9 +22,8 @@ resource "aws_lb_target_group" "api_targets" {
 
 resource "aws_lb_listener" "api_lb_listener" {
   load_balancer_arn = aws_lb.api_load_balancer.arn
-  port              = "443"
-  protocol          = "HTTPS"
-  ssl_policy        = "ELBSecurityPolicy-2016-08"
+  port              = "80"
+  protocol          = "HTTP"
 
   default_action {
     type             = "forward"

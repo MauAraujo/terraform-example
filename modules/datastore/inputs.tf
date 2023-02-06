@@ -1,3 +1,7 @@
+variable "identifier_prefix" {
+  type = string
+}
+
 variable "db_name" {
   type = string
 }
@@ -20,10 +24,10 @@ variable "engine_version" {
   type = string
 }
 
-variable "parameter_group_name" {
-  type = string
-}
-
 variable "subnet_ids" {
   type = list(string)
+}
+
+variable "blue_green_update_enabled" {
+  type = boolean
 }

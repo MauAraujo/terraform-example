@@ -14,9 +14,9 @@ dependency "vpc" {
 }
 
 inputs = {
-  db_name              = "devdb"
-  instance_type        = "db.t3.micro"
-  engine_version       = "14.6"
-  parameter_group_name = "default.postgres14.6"
-  subnet_ids           = dependency.vpc.outputs.subnet_ids
+  identifier_prefix = "dev"
+  db_name           = "devdb"
+  instance_type     = "db.t3.micro"
+  engine_version    = "14.6"
+  subnet_ids        = dependency.vpc.outputs.subnet_ids
 }

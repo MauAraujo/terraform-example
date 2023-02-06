@@ -1,17 +1,21 @@
-resource "aws_vpc" "asg_vpc" {
+resource "aws_vpc" "main_vpc" {
   cidr_block = var.cidr_block
 }
 
-resource "aws_subnet" "asg_subnets" {
+resource "aws_subnet" "api_subnets" {
   for_each          = var.subnets
-  vpc_id            = aws_vpc.asg_vpc.id
+  vpc_id            = aws_vpc.main_vpc.id
   availability_zone = each.key
   cidr_block        = each.value
 }
 
+resource "aws_internet_gateway" "main_internet_gateway" {
+  vpc_id = aws_vpc.main_vpc.id
+}
+
 resource "aws_security_group" "api_security_group" {
   name   = "api_security_group"
-  vpc_id = aws_vpc.asg_vpc.id
+  vpc_id = aws_vpc.main_vpc.id
 
   ingress {
     from_port   = var.api_port

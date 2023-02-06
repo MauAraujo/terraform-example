@@ -4,6 +4,7 @@ resource "aws_db_subnet_group" "main_db_subnets" {
 }
 
 resource "aws_db_instance" "main_db" {
+  identifier_prefix    = var.identifier_prefix
   allocated_storage    = 10
   db_name              = var.db_name
   engine               = "postgres"
@@ -11,7 +12,10 @@ resource "aws_db_instance" "main_db" {
   instance_class       = var.instance_type
   username             = var.db_username
   password             = var.db_password
-  parameter_group_name = var.parameter_group_name
   skip_final_snapshot  = true
   db_subnet_group_name = aws_db_subnet_group.main_db_subnets.name
+
+  blue_green_update {
+    enabled = var.blue_green_update_enabled
+  }
 }

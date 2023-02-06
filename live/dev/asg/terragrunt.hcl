@@ -23,8 +23,8 @@ dependency "alb" {
 inputs = {
   asg_name          = "dev-asg"
   name_prefix       = "dev-"
-  image_id          = ""
-  instance_type     = "t2.nano"
+  image_id          = "ami-00874d747dde814fa"
+  instance_type     = "m4.large"
   min_size          = 1
   max_size          = 1
   desired_capacity  = 1
