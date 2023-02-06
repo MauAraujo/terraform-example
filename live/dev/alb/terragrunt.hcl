@@ -6,6 +6,24 @@ terraform {
   source = "git::git@github.com:foo/modules.git//alb?ref=v0.0.1"
 }
 
+locals {
+  env = "dev"
+}
+
+generate "providers" {
+  path      = "providers.tf"
+  if_exists = "overwrite_terragrunt"
+  contents  = <<EOF
+provider  "aws" {
+  default_tags {
+    tags = {
+      Environment     = "${local.env}"
+    }
+  }
+}
+EOF
+}
+
 dependency "vpc" {
   config_path = "../vpc"
   mock_outputs = {
@@ -16,11 +34,10 @@ dependency "vpc" {
 }
 
 inputs = {
-  alb_name                  = "load-balancer-dev"
-  api_port                  = 8080
-  target_group_name         = "load-balancer-targets-dev"
-  vpc_id                    = dependency.vpc.outputs.vpc_id
-  subnet_ids                = dependency.vpc.outputs.subnet_ids
-  security_group_ids        = dependency.vpc.outputs.security_group_ids
-  blue_green_update_enabled = false
+  alb_name           = "load-balancer-${local.env}"
+  api_port           = 8080
+  target_group_name  = "load-balancer-targets-${local.env}"
+  vpc_id             = dependency.vpc.outputs.vpc_id
+  subnet_ids         = dependency.vpc.outputs.subnet_ids
+  security_group_ids = dependency.vpc.outputs.security_group_ids
 }

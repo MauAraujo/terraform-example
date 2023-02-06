@@ -29,5 +29,5 @@ variable "subnet_ids" {
 }
 
 variable "blue_green_update_enabled" {
-  type = boolean
+  type = bool
 }

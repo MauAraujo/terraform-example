@@ -6,6 +6,24 @@ terraform {
   source = "git::git@github.com:foo/modules.git//asg?ref=v0.0.1"
 }
 
+locals {
+  env = "dev"
+}
+
+generate "providers" {
+  path      = "providers.tf"
+  if_exists = "overwrite_terragrunt"
+  contents  = <<EOF
+provider  "aws" {
+  default_tags {
+    tags = {
+      Environment     = "${local.env}"
+    }
+  }
+}
+EOF
+}
+
 dependency "vpc" {
   config_path = "../vpc"
   mock_outputs = {
@@ -21,8 +39,8 @@ dependency "alb" {
 }
 
 inputs = {
-  asg_name          = "dev-asg"
-  name_prefix       = "dev-"
+  asg_name          = "${local.env}-asg"
+  name_prefix       = local.env
   image_id          = "ami-00874d747dde814fa"
   instance_type     = "m4.large"
   min_size          = 1
