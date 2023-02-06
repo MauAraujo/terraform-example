@@ -10,6 +10,13 @@ The code is divided in `live` and `modules` directories. The ideal structure wou
 so that the code found in `modules` can be versioned and pulled by the `live` repository.  However, for simplicity I will keep
 them together in this repo.
 
+## Architecture
+
+This is a simple example that serves an API server on an Auto-Scaling group, and uses RDS for a postgresql database with a Redis cluster for caching frequently accessed data. The implementation details are left out since this is an architecture exercise.
+
+![image](https://user-images.githubusercontent.com/19579265/217070205-7897e5e5-fd09-4430-9fcf-38d3c0ccaf8f.png)
+
+
 ## Usage
 For deploying the infrastructure found in this repo:
 
